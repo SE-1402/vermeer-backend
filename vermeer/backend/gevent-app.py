@@ -12,6 +12,7 @@ from ws4py.server.geventserver import WebSocketWSGIApplication, \
      WebSocketWSGIHandler, WSGIServer
 from ws4py.websocket import EchoWebSocket
 
+
 class BroadcastWebSocket(EchoWebSocket):
     def opened(self):
         app = self.environ['ws4py.app']
@@ -34,6 +35,7 @@ class BroadcastWebSocket(EchoWebSocket):
                     client.send(reason)
                 except:
                     pass
+
 
 class EchoWebSocketApplication(object):
     def __init__(self, host, port):
@@ -141,7 +143,7 @@ if __name__ == '__main__':
     configure_logger()
 
     parser = argparse.ArgumentParser(description='Echo gevent Server')
-    parser.add_argument('--host', default='127.0.0.1')
+    parser.add_argument('--host', default='0.0.0.0')
     parser.add_argument('-p', '--port', default=9000, type=int)
     args = parser.parse_args()
 

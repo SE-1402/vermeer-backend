@@ -1,0 +1,18 @@
+ body {
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        padding-top: 20px;
+}
+
+#game {
+        background: #eee;
+        margin: auto;
+        overflow: hidden;
+        width: 900px;
+        height: 620px;
+        box-shadow: 8px 8px 12px #020100;
+}
+
+#pong {
+}
