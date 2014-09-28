@@ -2,9 +2,11 @@ vermeer-backend
 ===============
 
 To run clone the project to your computer.
+
 -git clone git@github.com:SE-1402/vermeer-backend.git
 
 When you first 'cd' into the directory you'll be asked to initialize the 'virtual environment'.
+
 This creates a directory at ~/.virtualenv/vermeer/, and all the dependencies for the project will be installed here.
 
 To run the server:
