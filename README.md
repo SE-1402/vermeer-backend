@@ -16,3 +16,6 @@ To debug:
 - python server.py debug
 
 (You can also download intellij, or pycharm community editions to debug the server if neccessary.)
+
+Credit goes to Autobahn|Python for the server implementation:
+(https://github.com/tavendo/AutobahnPython)
