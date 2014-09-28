@@ -1,4 +1,6 @@
+autobahn==0.9.1
 cherrypy==3.2.4
 Flask==0.10.1
 Flask-Sockets==0.1.0
+twisted==14.0.2
 ws4py==0.3.4
