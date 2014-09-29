@@ -1,6 +1,6 @@
 ###############################################################################
 ##
-##  Copyright (C) 2011-2014 Tavendo GmbH
+##  Copyright (C) 2011-2013 Tavendo GmbH
 ##
 ##  Licensed under the Apache License, Version 2.0 (the "License");
 ##  you may not use this file except in compliance with the License.
@@ -16,41 +16,96 @@
 ##
 ###############################################################################
 
-from autobahn.twisted.websocket import WebSocketServerProtocol, WebSocketServerFactory
+import sys
+
+from twisted.internet import reactor
+from twisted.python import log
+from twisted.web.server import Site
+from twisted.web.static import File
+
+from autobahn.twisted.websocket import WebSocketServerFactory, WebSocketServerProtocol, listenWS
 
 
-class MyServerProtocol(WebSocketServerProtocol):
-
-    def onConnect(self, request):
-        print("Client connecting: {0}".format(request.peer))
+class BroadcastServerProtocol(WebSocketServerProtocol):
 
     def onOpen(self):
-        print("WebSocket connection open.")
+        self.factory.register(self)
 
     def onMessage(self, payload, isBinary):
-        if isBinary:
-            print("Binary message received: {0} bytes".format(len(payload)))
-        else:
-            print("Text message received: {0}".format(payload.decode('utf8')))
+        if not isBinary:
+            msg = "{} from {}".format(payload.decode('utf8'), self.peer)
+            self.factory.broadcast(msg)
 
-        ## echo back message verbatim
-        self.sendMessage(payload, isBinary)
+    def connectionLost(self, reason):
+        WebSocketServerProtocol.connectionLost(self, reason)
+        self.factory.unregister(self)
 
-    def onClose(self, wasClean, code, reason):
-        print("WebSocket connection closed: {0}".format(reason))
+
+class BroadcastServerFactory(WebSocketServerFactory):
+    """
+    Simple broadcast server broadcasting any message it receives to all
+    currently connected clients.
+    """
+    def __init__(self, url, debug=False, debugCodePaths=False):
+        WebSocketServerFactory.__init__(self, url, debug=debug, debugCodePaths=debugCodePaths)
+        self.clients = []
+        self.tickcount = 0
+        self.tick()
+
+    def tick(self):
+        self.tickcount += 1
+        self.broadcast("tick %d from server" % self.tickcount)
+        reactor.callLater(60, self.tick)
+
+    def register(self, client):
+        if not client in self.clients:
+            print("registered client {}".format(client.peer))
+            self.clients.append(client)
+
+    def unregister(self, client):
+        if client in self.clients:
+            print("unregistered client {}".format(client.peer))
+            self.clients.remove(client)
+
+    def broadcast(self, msg):
+        print("broadcasting message '{}' ..".format(msg))
+        for c in self.clients:
+            c.sendMessage(msg.encode('utf8'))
+            print("message sent to {}".format(c.peer))
+
+
+class BroadcastPreparedServerFactory(BroadcastServerFactory):
+    """
+    Functionally same as above, but optimized broadcast using
+    prepareMessage and sendPreparedMessage.
+    """
+    def broadcast(self, msg):
+        print("broadcasting prepared message '{}' ..".format(msg))
+        prepared_msg = self.prepareMessage(msg)
+        for c in self.clients:
+            c.sendPreparedMessage(prepared_msg)
+            print("prepared message sent to {}".format(c.peer))
 
 
 if __name__ == '__main__':
 
-    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == 'debug':
+        log.startLogging(sys.stdout)
+        debug = True
+    else:
+        debug = False
 
-    from twisted.python import log
-    from twisted.internet import reactor
+    ServerFactory = BroadcastServerFactory
+    #ServerFactory = BroadcastPreparedServerFactory
 
-    log.startLogging(sys.stdout)
+    factory = ServerFactory("ws://localhost:9000", debug=debug, debugCodePaths=debug)
 
-    factory = WebSocketServerFactory("ws://127.0.0.1:9000", debug=False)
-    factory.protocol = MyServerProtocol
+    factory.protocol = BroadcastServerProtocol
+    factory.setProtocolOptions(allowHixie76=True)
+    listenWS(factory)
 
-    reactor.listenTCP(9000, factory)
+    webdir = File(".")
+    web = Site(webdir)
+    reactor.listenTCP(8080, web)
+
     reactor.run()
