@@ -24,6 +24,7 @@ from twisted.web.server import Site
 from twisted.web.static import File
 
 from autobahn.twisted.websocket import WebSocketServerFactory, WebSocketServerProtocol, listenWS
+from vermeer.backend.util.isobus_converter import IopParser
 
 
 class BroadcastServerProtocol(WebSocketServerProtocol):
@@ -33,8 +34,17 @@ class BroadcastServerProtocol(WebSocketServerProtocol):
 
     def onMessage(self, payload, isBinary):
         if not isBinary:
-            msg = "{} from {}".format(payload.decode('utf8'), self.peer)
-            self.factory.broadcast(msg)
+            message = payload.decode('utf8')
+            if 'Connect' in message:
+                # First time Client it connecting: Send decoded .iop file.
+                msg = "{} from {}".format(message, self.peer)
+                iop_parser = IopParser()
+                try:
+                    objects = iop_parser.parse("./vermeer/backend/util/example.iop")
+                    # TODO: Broadcast the objects in json format
+                    self.factory.broadcast(msg)
+                except Exception, e:
+                    print e
 
     def connectionLost(self, reason):
         WebSocketServerProtocol.connectionLost(self, reason)
