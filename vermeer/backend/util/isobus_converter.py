@@ -21,18 +21,19 @@ class MacroObject:
 
 
 class IopParser:
-    def __init__(self, iop_file_name=None):
+    def __init__(self):
+        self.iop_file = None
+
+    def parse(self, iop_file_name=None):
         if not iop_file_name:
-            print("Specify a .iop file as argument..")
+            print(".iop file must be set")
+            raise NotImplementedError
         else:
             try:
                 self.iop_file = open(iop_file_name,'rb')
             except IOError:
                 print("Couldn't open file ", iop_file_name)
-                os.system("pause")
-                os._exit(1)
-
-    def parse(self):
+                raise IOError
         done = False
         objects = []
 

@@ -1,4 +1,4 @@
-###############################################################################
+# ##############################################################################
 ##
 ##  Copyright (C) 2011-2013 Tavendo GmbH
 ##
@@ -15,6 +15,8 @@
 ##  limitations under the License.
 ##
 ###############################################################################
+import json
+import os
 
 import sys
 
@@ -28,14 +30,13 @@ from vermeer.backend.util.isobus_converter import IopParser
 
 
 class BroadcastServerProtocol(WebSocketServerProtocol):
-
     def onOpen(self):
         self.factory.register(self)
 
     def onMessage(self, payload, isBinary):
         if not isBinary:
             message = payload.decode('utf8')
-            if 'Connect' in message:
+            if 'connect' in message:
                 # First time Client it connecting: Send decoded .iop file.
                 msg = "{} from {}".format(message, self.peer)
                 iop_parser = IopParser()
@@ -43,8 +44,22 @@ class BroadcastServerProtocol(WebSocketServerProtocol):
                     objects = iop_parser.parse("./vermeer/backend/util/example.iop")
                     # TODO: Broadcast the objects in json format
                     self.factory.broadcast(msg)
+                    self.factory.broadcast(objects)
                 except Exception, e:
                     print e
+            elif 'test' in message:
+                try:
+                    json_data = open('./vermeer/backend/util/iop.json')
+                    data = json.load(json_data)
+                    payload = json.dumps(data, ensure_ascii=False).encode('utf8')
+                    ## echo back message verbatim
+                    self.sendMessage(payload, isBinary)
+                    ## self.factory.broadcast(payload)
+                except Exception, e:
+                    print e
+            else:
+                msg = "{} from {}".format(message, self.peer)
+                self.factory.broadcast(msg)
 
     def connectionLost(self, reason):
         WebSocketServerProtocol.connectionLost(self, reason)
@@ -56,6 +71,7 @@ class BroadcastServerFactory(WebSocketServerFactory):
     Simple broadcast server broadcasting any message it receives to all
     currently connected clients.
     """
+
     def __init__(self, url, debug=False, debugCodePaths=False):
         WebSocketServerFactory.__init__(self, url, debug=debug, debugCodePaths=debugCodePaths)
         self.clients = []
@@ -89,6 +105,7 @@ class BroadcastPreparedServerFactory(BroadcastServerFactory):
     Functionally same as above, but optimized broadcast using
     prepareMessage and sendPreparedMessage.
     """
+
     def broadcast(self, msg):
         print("broadcasting prepared message '{}' ..".format(msg))
         prepared_msg = self.prepareMessage(msg)
