@@ -125,7 +125,7 @@ if __name__ == '__main__':
     ServerFactory = BroadcastServerFactory
     #ServerFactory = BroadcastPreparedServerFactory
 
-    factory = ServerFactory("ws://localhost:9000", debug=debug, debugCodePaths=debug)
+    factory = ServerFactory("ws://0.0.0.0:9000", debug=debug, debugCodePaths=debug)
 
     factory.protocol = BroadcastServerProtocol
     factory.setProtocolOptions(allowHixie76=True)
