@@ -18,7 +18,7 @@
 import json
 
 from autobahn.asyncio.websocket import WebSocketServerProtocol, WebSocketServerFactory
-from vermeer.backend.util.isobus_converter import IopParser
+import vermeer.backend.util.isobus_converter
 
 
 class MyServerProtocol(WebSocketServerProtocol):
@@ -35,7 +35,7 @@ class MyServerProtocol(WebSocketServerProtocol):
             if 'connect' in message:
             # First time Client it connecting: Send decoded .iop file.
                 msg = "{} from {}".format(message, self.peer)
-                iop_parser = IopParser()
+                iop_parser = vermeer.backend.util.isobus_converter.IopParser()
                 try:
                     objects = iop_parser.parse("./vermeer/backend/util/example.iop")
                     # TODO: Broadcast the objects in json format

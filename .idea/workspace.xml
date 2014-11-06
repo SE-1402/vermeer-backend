@@ -32,8 +32,8 @@
       <file leaf-file-name="server_asyncio.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14556962" vertical-offset="231" max-vertical-offset="1350">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.094936706" vertical-offset="255" max-vertical-offset="1350">
+              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -56,12 +56,12 @@
         <option value="$PROJECT_DIR$/vermeer/backend/server.py" />
         <option value="$PROJECT_DIR$/vermeer/backend/client.html" />
         <option value="$PROJECT_DIR$/vermeer/backend/client.py" />
-        <option value="$PROJECT_DIR$/vermeer/backend/util/isobus_converter.py" />
         <option value="$PROJECT_DIR$/vermeer/backend/util/iop.json" />
         <option value="$PROJECT_DIR$/vermeer/backend/autobahn-app.py" />
         <option value="$PROJECT_DIR$/vermeer/backend/client_asyncio.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/vermeer/backend/client_asyncio.html" />
+        <option value="$PROJECT_DIR$/vermeer/backend/util/isobus_converter.py" />
         <option value="$PROJECT_DIR$/vermeer/backend/server_asyncio.py" />
       </list>
     </option>
@@ -723,13 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vermeer/backend/static/js/droidsensor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2387268" vertical-offset="0" max-vertical-offset="1785">
-          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vermeer/backend/client.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4585153" vertical-offset="0" max-vertical-offset="1050">
@@ -764,14 +757,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3809524" vertical-offset="1207" max-vertical-offset="33405">
           <caret line="97" column="32" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vermeer/backend/util/isobus_converter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="131" max-vertical-offset="1860">
-          <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -826,10 +811,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vermeer/backend/util/isobus_converter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1875">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14556962" vertical-offset="231" max-vertical-offset="1350">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.094936706" vertical-offset="255" max-vertical-offset="1350">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
           <folding />
         </state>
       </provider>
