@@ -15,7 +15,9 @@
     <SUITE FILE_PATH="coverage/vermeer-backend$cherry_app.coverage" NAME="cherry-app Coverage Results" MODIFIED="1411712249640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/vermeer-backend$autobahn_app.coverage" NAME="autobahn-app Coverage Results" MODIFIED="1415244218106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/vermeer-backend$droid_cherry_app.coverage" NAME="droid-cherry-app Coverage Results" MODIFIED="1411834203746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/vermeer-backend$Unittests_in_tests.coverage" NAME="Unittests in tests Coverage Results" MODIFIED="1415477787361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/vermeer/backend/tests" />
     <SUITE FILE_PATH="coverage/vermeer-backend$app.coverage" NAME="app Coverage Results" MODIFIED="1411712003294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/vermeer-backend$Unittests_in_vermeer_backend.coverage" NAME="Unittests in vermeer-backend Coverage Results" MODIFIED="1415482099622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -29,23 +31,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="server_asyncio.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py">
+      <file leaf-file-name="isobus_converter.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vermeer/backend/util/isobus_converter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33544305" vertical-offset="2181" max-vertical-offset="3135">
-              <caret line="156" column="29" selection-start-line="156" selection-start-column="29" selection-end-line="156" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.6431853" vertical-offset="0" max-vertical-offset="3975">
+              <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_iop_parser.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vermeer/backend/tests/test_iop_parser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
-                <element signature="e#777#788#0" expanded="true" />
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="isobus_converter.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vermeer/backend/util/isobus_converter.py">
+      <file leaf-file-name="example.iop" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vermeer/backend/util/example.iop">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1875">
-              <caret line="0" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+              <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="example_iop.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vermeer/backend/util/example_iop.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="4725">
+              <caret line="77" column="34" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -73,8 +95,9 @@
         <option value="$PROJECT_DIR$/vermeer/backend/client_asyncio.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/vermeer/backend/client_asyncio.html" />
-        <option value="$PROJECT_DIR$/vermeer/backend/util/isobus_converter.py" />
         <option value="$PROJECT_DIR$/vermeer/backend/server_asyncio.py" />
+        <option value="$PROJECT_DIR$/vermeer/backend/tests/test_iop_parser.py" />
+        <option value="$PROJECT_DIR$/vermeer/backend/util/isobus_converter.py" />
       </list>
     </option>
   </component>
@@ -160,28 +183,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vermeer-backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vermeer-backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vermeer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -212,7 +213,59 @@
       <recent name="$PROJECT_DIR$/vermeer/backend/util" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.autobahn-app">
+  <component name="RunManager" selected="Python tests.Unittests in vermeer-backend">
+    <configuration default="false" name="Unittests in tests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/vermeer/backend/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="vermeer-backend" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="$PROJECT_DIR$/vermeer/backend/tests" />
+      <option name="TEST_TYPE" value="TEST_FOLDER" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in vermeer-backend" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="vermeer-backend" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="$PROJECT_DIR$" />
+      <option name="TEST_TYPE" value="TEST_FOLDER" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
+      <method />
+    </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -297,17 +350,7 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="PyRemoteDebugConfigurationType" factoryName="Python Remote Debug">
-      <module name="" />
-      <option name="PORT" value="0" />
-      <option name="HOST" value="null" />
-      <PathMappingSettings>
-        <option name="pathMappings">
-          <list />
-        </option>
-      </PathMappingSettings>
-      <option name="REDIRECT_OUTPUT" value="true" />
-      <option name="SUSPEND_AFTER_CONNECT" value="true" />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -333,7 +376,17 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+    <configuration default="true" type="PyRemoteDebugConfigurationType" factoryName="Python Remote Debug">
+      <module name="" />
+      <option name="PORT" value="0" />
+      <option name="HOST" value="null" />
+      <PathMappingSettings>
+        <option name="pathMappings">
+          <list />
+        </option>
+      </PathMappingSettings>
+      <option name="REDIRECT_OUTPUT" value="true" />
+      <option name="SUSPEND_AFTER_CONNECT" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -397,9 +450,17 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Python.autobahn-app" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in tests" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in vermeer-backend" />
     </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in vermeer-backend" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in tests" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
@@ -414,7 +475,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="773" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -422,19 +483,19 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21082391" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2859175" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21405493" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39500734" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32786885" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32599118" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991204" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -456,145 +517,53 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint type="python-line">
-          <url>file://$USER_HOME$/.virtualenvs/vermeer/lib/python2.7/site-packages/gevent/pywsgi.py</url>
-          <line>507</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint type="python-line">
-          <url>file://$USER_HOME$/.virtualenvs/vermeer/lib/python2.7/site-packages/ws4py/server/geventserver.py</url>
-          <line>57</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint type="python-line">
-          <url>file://$USER_HOME$/.virtualenvs/vermeer/lib/python2.7/site-packages/gevent/pywsgi.py</url>
-          <line>493</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint type="python-line">
-          <url>file://$USER_HOME$/.virtualenvs/vermeer/lib/python2.7/site-packages/gevent/pywsgi.py</url>
-          <line>423</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint type="python-line">
-          <url>file://$USER_HOME$/.virtualenvs/vermeer/lib/python2.7/site-packages/gevent/pywsgi.py</url>
-          <line>494</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint type="python-line">
-          <url>file://$USER_HOME$/.virtualenvs/vermeer/lib/python2.7/site-packages/gevent/pywsgi.py</url>
-          <line>486</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint type="python-line">
-          <url>file://$USER_HOME$/.virtualenvs/vermeer/lib/python2.7/site-packages/ws4py/server/geventserver.py</url>
-          <line>44</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint type="python-line">
-          <url>file://$USER_HOME$/.virtualenvs/vermeer/lib/python2.7/site-packages/ws4py/server/geventserver.py</url>
-          <line>47</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint type="python-line">
-          <url>file://$USER_HOME$/.virtualenvs/vermeer/lib/python2.7/site-packages/ws4py/server/geventserver.py</url>
-          <line>48</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint type="python-line">
-          <url>file://$USER_HOME$/.virtualenvs/vermeer/lib/python2.7/site-packages/ws4py/server/geventserver.py</url>
-          <line>53</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint type="python-line">
-          <url>file://$USER_HOME$/.virtualenvs/vermeer/lib/python2.7/site-packages/ws4py/server/geventserver.py</url>
-          <line>49</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint type="python-line">
-          <url>file://$USER_HOME$/.virtualenvs/vermeer/lib/python2.7/site-packages/gevent/pywsgi.py</url>
-          <line>459</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/vermeer/backend/autobahn-app.py</url>
-          <line>36</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/vermeer/backend/autobahn-app.py</url>
-          <line>51</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/vermeer/backend/autobahn-app.py</url>
-          <line>58</line>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py</url>
-          <line>188</line>
-          <option name="timeStamp" value="55" />
+          <line>158</line>
+          <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py</url>
-          <line>190</line>
-          <option name="timeStamp" value="56" />
+          <url>file://$PROJECT_DIR$/vermeer/backend/tests/test_iop_parser.py</url>
+          <line>10</line>
+          <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py</url>
-          <line>195</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py</url>
-          <line>198</line>
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py</url>
-          <line>202</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py</url>
-          <line>200</line>
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py</url>
-          <line>185</line>
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py</url>
-          <line>150</line>
-          <option name="timeStamp" value="66" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py</url>
-          <line>147</line>
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py</url>
-          <line>144</line>
-          <option name="timeStamp" value="68" />
+          <url>file://$PROJECT_DIR$/vermeer/backend/tests/test_iop_parser.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="72" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="69" />
+      <option name="time" value="76" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2181" max-vertical-offset="3135">
+          <caret line="158" column="45" selection-start-line="158" selection-start-column="45" selection-end-line="158" selection-end-column="45" />
+          <folding>
+            <element signature="e#778#789#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vermeer/backend/util/isobus_converter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1875">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vermeer/backend/autobahn-app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="618" max-vertical-offset="2145">
           <caret line="60" column="56" selection-start-line="60" selection-start-column="56" selection-end-line="60" selection-end-column="56" />
           <folding>
-            <element signature="e#775#786#0" expanded="true" />
+            <element signature="e#775#786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -603,7 +572,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1207" max-vertical-offset="33405">
           <caret line="93" column="27" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -620,7 +588,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2145">
           <caret line="61" column="27" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
           <folding>
-            <element signature="e#775#786#0" expanded="true" />
+            <element signature="e#775#786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -629,7 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1207" max-vertical-offset="33405">
           <caret line="93" column="27" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -646,7 +613,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="1830">
           <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding>
-            <element signature="e#775#786#0" expanded="true" />
+            <element signature="e#775#786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -664,7 +631,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1740">
           <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
           <folding>
-            <element signature="e#775#786#0" expanded="true" />
+            <element signature="e#775#786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -690,7 +657,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1740">
           <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
           <folding>
-            <element signature="e#775#786#0" expanded="true" />
+            <element signature="e#775#786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -707,7 +674,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="915">
           <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
           <folding>
-            <element signature="e#775#786#0" expanded="true" />
+            <element signature="e#775#786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -731,7 +698,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="449" max-vertical-offset="915">
           <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
           <folding>
-            <element signature="e#775#786#0" expanded="true" />
+            <element signature="e#775#786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -764,26 +731,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vermeer/backend/util/example.iop">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11326861" vertical-offset="0" max-vertical-offset="927">
-          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vermeer/backend/util/example_iop.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5598756" vertical-offset="405" max-vertical-offset="4725">
-          <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08888889" vertical-offset="0" max-vertical-offset="675">
           <caret line="4" column="41" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -791,7 +742,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3809524" vertical-offset="1207" max-vertical-offset="33405">
           <caret line="97" column="32" selection-start-line="97" selection-start-column="32" selection-end-line="97" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -799,7 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="990">
           <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -807,7 +756,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.31111112" vertical-offset="345" max-vertical-offset="1020">
           <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -824,7 +772,7 @@
         <state vertical-scroll-proportion="0.9466019" vertical-offset="405" max-vertical-offset="2145">
           <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
           <folding>
-            <element signature="e#775#786#0" expanded="true" />
+            <element signature="e#775#786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -841,25 +789,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36666667" vertical-offset="0" max-vertical-offset="975">
           <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python/2.7.8_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/unittest/case.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="4969" max-vertical-offset="16035">
+          <caret line="352" column="0" selection-start-line="352" selection-start-column="0" selection-end-line="352" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vermeer/backend/util/isobus_converter.py">
+    <entry file="file://$PROJECT_DIR$/vermeer/backend/util/example.iop">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1875">
-          <caret line="0" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33544305" vertical-offset="2181" max-vertical-offset="3135">
-          <caret line="156" column="29" selection-start-line="156" selection-start-column="29" selection-end-line="156" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2045" max-vertical-offset="3165">
+          <caret line="155" column="29" selection-start-line="155" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
           <folding>
-            <element signature="e#777#788#0" expanded="true" />
+            <element signature="e#778#789#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vermeer/backend/util/example_iop.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="4725">
+          <caret line="77" column="34" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vermeer/backend/tests/test_iop_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vermeer/backend/util/isobus_converter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6431853" vertical-offset="0" max-vertical-offset="3975">
+          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,7 +1,7 @@
 # ##############################################################################
 # #
 # #  Copyright (C) 2013-2014 Tavendo GmbH
-##
+# #
 ##  Licensed under the Apache License, Version 2.0 (the "License");
 ##  you may not use this file except in compliance with the License.
 ##  You may obtain a copy of the License at
@@ -152,16 +152,18 @@ class MyServerProtocol(WebSocketServerProtocol):
             print("Text message received: {0}".format(payload.decode('utf8')))
             message = payload.decode('utf8')
             if 'connect' in message:
-            # First time Client it connecting: Send decoded .iop file.
-                msg = "{} from {}".format(message, self.peer)
+                # First time Client it connecting: Send decoded .iop file.
                 iop_parser = IopParser()
                 try:
+                    # TODO: Get .iop from CAN, currently hardcoded
                     objects = iop_parser.parse("./vermeer/backend/util/example.iop")
                     # TODO: Broadcast the objects in json format
                     self.sendMessage(payload, isBinary)
                     self.sendMessage(payload, isBinary)
                 except Exception, e:
                     print e
+            elif 'update' in message:
+                pass
             elif 'test' in message:
                 try:
                     json_data = open('./vermeer/backend/util/iop.json')

@@ -20,6 +20,185 @@ class MacroObject:
         return "Macro {}, Event ID {}".format(self.macro_id, self.event_id)
 
 
+def parse_data_mask(object_id, type_id, iop_file):
+    data_mask = struct.unpack('<BHBB', iop_file.read(5))
+    background_color = data_mask[0]
+    soft_key_mask = data_mask[1]
+    number_objects = data_mask[2]
+    number_macros = data_mask[3]
+    objects = []
+    macros = []
+
+    for _ in range(number_objects):
+        a = struct.unpack('<Hhh', iop_file.read(6))
+        objects.append(ObjectLocation(a[0], a[1], a[2]))
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
+
+    print("Object ID : ", object_id, ", Type ", type_id, " Background color ", background_color, " Soft key mask ",
+          soft_key_mask, " Objets ", number_objects, " Macros ", number_macros)
+    for obj in objects:
+        print(obj)
+    for macro in macros:
+        print(macro)
+
+
+def parse_alarm_mask(object_id, type_id, iop_file):
+    temp = struct.unpack('<BHBBBB', iop_file.read(7))
+    background_color = temp[0]
+    soft_key_mask = temp[1]
+    priority = temp[2]
+    acoustic_signal = temp[3]
+    number_objects = temp[4]
+    number_macros = temp[5]
+    objects = []
+    macros = []
+
+    for _ in range(number_objects):
+        a = struct.unpack('<Hhh', iop_file.read(6))
+        objects.append(ObjectLocation(a[0], a[1], a[2]))
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
+
+    print("Object ID : ", object_id,
+          ", Type ", type_id,
+          " Background color ", background_color,
+          " Soft key mask ", soft_key_mask,
+          " Priority ", priority,
+          " Acoustic Signal ", acoustic_signal,
+          " Objets ", number_objects,
+          " Macros ", number_macros)
+
+    for obj in objects:
+        print(obj)
+    for macro in macros:
+        print(macro)
+
+
+def parse_container(object_id, type_id, iop_file):
+    pass
+
+
+def parse_soft_key_mask(object_id, type_id, iop_file):
+    pass
+
+
+def parse_key(object_id, type_id, iop_file):
+    pass
+
+
+def parse_button(object_id, type_id, iop_file):
+    pass
+
+
+def parse_input_boolean_field(object_id, type_id, iop_file):
+    pass
+
+
+def parse_input_string_field(object_id, type_id, iop_file):
+    pass
+
+
+def parse_input_number_field(object_id, type_id, iop_file):
+    pass
+
+
+def parse_input_list_field(object_id, type_id, iop_file):
+    pass
+
+
+def parse_output_string_field(object_id, type_id, iop_file):
+    pass
+
+
+def parse_output_number_field(object_id, type_id, iop_file):
+    pass
+
+
+def parse_line(object_id, type_id, iop_file):
+    pass
+
+
+def parse_rectangle(object_id, type_id, iop_file):
+    pass
+
+
+def parse_ellipse(object_id, type_id, iop_file):
+    pass
+
+
+def parse_polygon(object_id, type_id, iop_file):
+    pass
+
+
+def parse_meter(object_id, type_id, iop_file):
+    pass
+
+
+def parse_linear_bar_graph(object_id, type_id, iop_file):
+    pass
+
+
+def parse_arched_bar_graph(object_id, type_id, iop_file):
+    pass
+
+
+def parse_picture_graphic(object_id, type_id, iop_file):
+    pass
+
+
+def parse_number_variable(object_id, type_id, iop_file):
+    pass
+
+
+def parse_string_variable(object_id, type_id, iop_file):
+    pass
+
+
+def parse_font_attr_object(object_id, type_id, iop_file):
+    pass
+
+
+def parse_line_attr_object(object_id, type_id, iop_file):
+    pass
+
+
+def parse_fill_attr_object(object_id, type_id, iop_file):
+    pass
+
+
+def parse_input_attr_object(object_id, type_id, iop_file):
+    pass
+
+
+def parse_object_ptr(object_id, type_id, iop_file):
+    pass
+
+
+def parse_macro(object_id, type_id, iop_file):
+    temp = struct.unpack('<H', iop_file.read(2))
+    command_length = temp[0]
+    # TODO: Fix command parsing
+    commands = iop_file.read(command_length)
+
+    print("Object ID : ", object_id,
+          ", Type ", type_id,
+          " command_length ", command_length,
+          " UNSUPPORTED PARSING OF COMMAND YET")
+
+
+def parse_aux_function(object_id, type_id, iop_file):
+    pass
+
+
+def parse_aux_input(object_id, type_id, iop_file):
+    pass
+
+
 class IopParser:
     def __init__(self):
         self.iop_file = None
@@ -40,81 +219,42 @@ class IopParser:
         while not done:
             data = struct.unpack('<HB', self.iop_file.read(3))
             print("Print Object ID: " + str(data[0]) + " Type " + str(data[1]))
-            self.parse_object(data[0], data[1], file)
+            self.parse_object(data[0], data[1], self.iop_file)
 
         self.iop_file.close()
         return objects
 
-    def parse_data_mask(self, object_id, type_id, file):
-        data_mask = struct.unpack('<BHBB', file.read(5))
-        background_color = data_mask[0]
-        softkey_mask = data_mask[1]
-        number_objects = data_mask[2]
-        number_macros = data_mask[3]
-        objects = []
-        macros = []
-
-        for _ in range(number_objects):
-            a = struct.unpack('<Hhh', file.read(6))
-            objects.append(ObjectLocation(a[0], a[1], a[2]))
-
-        for _ in range(number_macros):
-            a = struct.unpack('<BB', file.read(2))
-            macros.append(MacroObject(a[0], a[1]))
-
-        print("Object ID : ", object_id, ", Type ", type_id, " Background color ", background_color, " Soft key mask ",
-              softkey_mask, " Objets ", number_objects, " Macros ", number_macros)
-        for obj in objects:
-            print(obj)
-        for macro in macros:
-            print(macro)
-
-    def parse_alarm_mask(self, object_id, type_id, file):
-        temp = struct.unpack('<BHBBBB', file.read(7))
-        background_color = temp[0]
-        softkey_mask = temp[1]
-        priority = temp[2]
-        acoustic_signal = temp[3]
-        number_objects = temp[4]
-        number_macros = temp[5]
-        objects = []
-        macros = []
-
-        for _ in range(number_objects):
-            a = struct.unpack('<Hhh', file.read(6))
-            objects.append(ObjectLocation(a[0], a[1], a[2]))
-
-        for _ in range(number_macros):
-            a = struct.unpack('<BB', file.read(2))
-            macros.append(MacroObject(a[0], a[1]))
-
-        print("Object ID : ", object_id,
-              ", Type ", type_id,
-              " Background color ", background_color,
-              " Soft key mask ", softkey_mask,
-              " Priority ", priority,
-              " Acoustic Signal ", acoustic_signal,
-              " Objets ", number_objects,
-              " Macros ", number_macros)
-
-        for obj in objects:
-            print(obj)
-        for macro in macros:
-            print(macro)
-
-    def parse_macro(self, object_id, type_id, file):
-        temp = struct.unpack('<H', file.read(2))
-        command_length = temp[0]
-        commands = file.read(command_length)
-
-        print("Object ID : ", object_id,
-              ", Type ", type_id,
-              " command_length ", command_length,
-              " UNSUPPORTED PARSING OF COMMAND YET")
-
-    def parse_object(self, object_id, object_type, file):
+    @staticmethod
+    def parse_object(object_id, object_type, iop_file):
         return {
-            1: self.parse_data_mask,
-            2: self.parse_alarm_mask,
-            28: self.parse_macro
-        }[object_type](object_id, object_type, file)
+            1: parse_data_mask,
+            2: parse_alarm_mask,
+            3: parse_container,
+            4: parse_soft_key_mask,
+            5: parse_key,
+            6: parse_button,
+            7: parse_input_boolean_field,
+            8: parse_input_string_field,
+            9: parse_input_number_field,
+            10: parse_input_list_field,
+            11: parse_output_string_field,
+            12: parse_output_number_field,
+            13: parse_line,
+            14: parse_rectangle,
+            15: parse_ellipse,
+            16: parse_polygon,
+            17: parse_meter,
+            18: parse_linear_bar_graph,
+            19: parse_arched_bar_graph,
+            20: parse_picture_graphic,
+            21: parse_number_variable,
+            22: parse_string_variable,
+            23: parse_font_attr_object,
+            24: parse_line_attr_object,
+            25: parse_fill_attr_object,
+            26: parse_input_attr_object,
+            27: parse_object_ptr,
+            28: parse_macro,
+            29: parse_aux_function,
+            30: parse_aux_input
+        }[object_type](object_id, object_type, iop_file)
