@@ -80,7 +80,35 @@ def parse_alarm_mask(object_id, type_id, iop_file):
 
 
 def parse_container(object_id, type_id, iop_file):
-    pass
+    container = struct.unpack('<HHBBB', iop_file.read(7))
+    width = container[0]
+    height = container[1]
+    hidden = container[2]
+    number_objects = container[3]
+    number_macros = container[4]
+    objects = []
+    macros = []
+
+    for _ in range(number_objects):
+        a = struct.unpack('<Hhh', iop_file.read(6))
+        objects.append(ObjectLocation(a[0], a[1], a[2]))
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
+
+    print("\n\tObject ID: " + str(object_id) +
+          "\n\tType: " + str(type_id) +
+          "\n\tWidth: " + str(width) +
+          "\n\tHeight: " + str(height) +
+          "\n\tHidden: " + str(hidden) +
+          "\n\tObjects: " + str(number_objects) +
+          "\n\tMacros: " + str(number_macros))
+
+    for obj in objects:
+        print(obj)
+    for macro in macros:
+        print(macro)
 
 
 def parse_soft_key_mask(object_id, type_id, iop_file):
