@@ -202,8 +202,17 @@ def parse_output_number_field(object_id, type_id, iop_file):
 
 
 def parse_line(object_id, type_id, iop_file):
-    pass
+    line = struct.unpack('<HHHBB', iop_file.read(8))
+    line_attr = line[0]
+    width = line[1]
+    height = line[2]
+    line_direction = line[3]
+    number_macros = line[4]
+    macros = []
 
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
 
 def parse_rectangle(object_id, type_id, iop_file):
     pass
