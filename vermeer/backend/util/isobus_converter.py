@@ -214,8 +214,20 @@ def parse_line(object_id, type_id, iop_file):
         a = struct.unpack('<BB', iop_file.read(2))
         macros.append(MacroObject(a[0], a[1]))
 
+
 def parse_rectangle(object_id, type_id, iop_file):
-    pass
+    rectangle = struct.unpack('<HHHBHB', iop_file.read(10))
+    line_attr = rectangle[0]
+    width = rectangle[1]
+    height = rectangle[2]
+    line_suppression = rectangle[3]
+    fill_attr = rectangle[4]
+    number_macros = rectangle[5]
+    macros = []
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
 
 
 def parse_ellipse(object_id, type_id, iop_file):
