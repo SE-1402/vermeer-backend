@@ -112,7 +112,31 @@ def parse_container(object_id, type_id, iop_file):
 
 
 def parse_soft_key_mask(object_id, type_id, iop_file):
-    pass
+    soft_key = struct.unpack('<BBB', iop_file.read(3))
+    background_color = soft_key[0]
+    number_objects = soft_key[1]
+    number_macros = soft_key[2]
+    objects = []
+    macros = []
+
+    for _ in range(number_objects):
+        a = struct.unpack('<Hhh', iop_file.read(6))
+        objects.append(ObjectLocation(a[0], a[1], a[2]))
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
+
+    print("\n\tObject ID: " + str(object_id) +
+          "\n\tType: " + str(type_id) +
+          "\n\tbackground_color: " + str(background_color) +
+          "\n\tObjects: " + str(number_objects) +
+          "\n\tMacros: " + str(number_macros))
+
+    for obj in objects:
+        print(obj)
+    for macro in macros:
+        print(macro)
 
 
 def parse_key(object_id, type_id, iop_file):
@@ -120,7 +144,41 @@ def parse_key(object_id, type_id, iop_file):
 
 
 def parse_button(object_id, type_id, iop_file):
-    pass
+    button = struct.unpack('<HHBBBBBB', iop_file.read(10))
+    width = button[0]
+    height = button[1]
+    background_color = button[2]
+    border_color = button[3]
+    key_code = button[4]
+    options = button[5]
+    number_objects = button[6]
+    number_macros = button[7]
+    objects = []
+    macros = []
+
+    for _ in range(number_objects):
+        a = struct.unpack('<Hhh', iop_file.read(6))
+        objects.append(ObjectLocation(a[0], a[1], a[2]))
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
+
+    print("\n\tObject ID: " + str(object_id) +
+          "\n\tType: " + str(type_id) +
+          "\n\tWidth: " + str(width) +
+          "\n\tHeight: " + str(height) +
+          "\n\tbackground_color: " + str(background_color) +
+          "\n\tborder_color: " + str(border_color) +
+          "\n\tkey_code: " + str(key_code) +
+          "\n\toptions: " + str(options) +
+          "\n\tObjects: " + str(number_objects) +
+          "\n\tMacros: " + str(number_macros))
+
+    for obj in objects:
+        print(obj)
+    for macro in macros:
+        print(macro)
 
 
 def parse_input_boolean_field(object_id, type_id, iop_file):
