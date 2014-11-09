@@ -231,7 +231,20 @@ def parse_rectangle(object_id, type_id, iop_file):
 
 
 def parse_ellipse(object_id, type_id, iop_file):
-    pass
+    ellipse = struct.unpack('<HHHBBBHB', iop_file.read(12))
+    line_attr = ellipse[0]
+    width = ellipse[1]
+    height = ellipse[2]
+    ellipse_type = ellipse[3]
+    start_angle = ellipse[4]
+    end_angle = ellipse[5]
+    fill_attr = ellipse[6]
+    number_macros = ellipse[7]
+    macros = []
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
 
 
 def parse_polygon(object_id, type_id, iop_file):
