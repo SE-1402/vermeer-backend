@@ -165,7 +165,28 @@ def parse_input_string_field(object_id, type_id, iop_file):
 
 
 def parse_input_number_field(object_id, type_id, iop_file):
-    pass
+    input_number = struct.unpack('<HHBHBHLLLlfBBBBB', iop_file.read(35))
+    width = input_number[0]
+    height = input_number[1]
+    background_color = input_number[2]
+    font_attr = input_number[3]
+    options = input_number[4]
+    variable_ref = input_number[5]
+    value = input_number[6]
+    min_value = input_number[7]
+    max_value = input_number[8]
+    offset = input_number[9]
+    scale = input_number[10]
+    num_decimals = input_number[11]
+    format = input_number[12]
+    justification = input_number[13]
+    options_2 = input_number[14]
+    number_macros = input_number[15]
+    macros = []
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
 
 
 def parse_input_list_field(object_id, type_id, iop_file):
