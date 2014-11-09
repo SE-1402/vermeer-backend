@@ -37,13 +37,6 @@ def parse_data_mask(object_id, type_id, iop_file):
         a = struct.unpack('<BB', iop_file.read(2))
         macros.append(MacroObject(a[0], a[1]))
 
-    print("Object ID : ", object_id, ", Type ", type_id, " Background color ", background_color, " Soft key mask ",
-          soft_key_mask, " Objets ", number_objects, " Macros ", number_macros)
-    for obj in objects:
-        print(obj)
-    for macro in macros:
-        print(macro)
-
 
 def parse_alarm_mask(object_id, type_id, iop_file):
     temp = struct.unpack('<BHBBBB', iop_file.read(7))
@@ -64,20 +57,6 @@ def parse_alarm_mask(object_id, type_id, iop_file):
         a = struct.unpack('<BB', iop_file.read(2))
         macros.append(MacroObject(a[0], a[1]))
 
-    print("Object ID : ", object_id,
-          ", Type ", type_id,
-          " Background color ", background_color,
-          " Soft key mask ", soft_key_mask,
-          " Priority ", priority,
-          " Acoustic Signal ", acoustic_signal,
-          " Objets ", number_objects,
-          " Macros ", number_macros)
-
-    for obj in objects:
-        print(obj)
-    for macro in macros:
-        print(macro)
-
 
 def parse_container(object_id, type_id, iop_file):
     container = struct.unpack('<HHBBB', iop_file.read(7))
@@ -97,19 +76,6 @@ def parse_container(object_id, type_id, iop_file):
         a = struct.unpack('<BB', iop_file.read(2))
         macros.append(MacroObject(a[0], a[1]))
 
-    print("\n\tObject ID: " + str(object_id) +
-          "\n\tType: " + str(type_id) +
-          "\n\tWidth: " + str(width) +
-          "\n\tHeight: " + str(height) +
-          "\n\tHidden: " + str(hidden) +
-          "\n\tObjects: " + str(number_objects) +
-          "\n\tMacros: " + str(number_macros))
-
-    for obj in objects:
-        print(obj)
-    for macro in macros:
-        print(macro)
-
 
 def parse_soft_key_mask(object_id, type_id, iop_file):
     soft_key = struct.unpack('<BBB', iop_file.read(3))
@@ -126,17 +92,6 @@ def parse_soft_key_mask(object_id, type_id, iop_file):
     for _ in range(number_macros):
         a = struct.unpack('<BB', iop_file.read(2))
         macros.append(MacroObject(a[0], a[1]))
-
-    print("\n\tObject ID: " + str(object_id) +
-          "\n\tType: " + str(type_id) +
-          "\n\tbackground_color: " + str(background_color) +
-          "\n\tObjects: " + str(number_objects) +
-          "\n\tMacros: " + str(number_macros))
-
-    for obj in objects:
-        print(obj)
-    for macro in macros:
-        print(macro)
 
 
 def parse_key(object_id, type_id, iop_file):
@@ -164,22 +119,6 @@ def parse_button(object_id, type_id, iop_file):
         a = struct.unpack('<BB', iop_file.read(2))
         macros.append(MacroObject(a[0], a[1]))
 
-    print("\n\tObject ID: " + str(object_id) +
-          "\n\tType: " + str(type_id) +
-          "\n\tWidth: " + str(width) +
-          "\n\tHeight: " + str(height) +
-          "\n\tbackground_color: " + str(background_color) +
-          "\n\tborder_color: " + str(border_color) +
-          "\n\tkey_code: " + str(key_code) +
-          "\n\toptions: " + str(options) +
-          "\n\tObjects: " + str(number_objects) +
-          "\n\tMacros: " + str(number_macros))
-
-    for obj in objects:
-        print(obj)
-    for macro in macros:
-        print(macro)
-
 
 def parse_input_boolean_field(object_id, type_id, iop_file):
     boolean_input = struct.unpack('<BHHHBBB', iop_file.read(10))
@@ -196,22 +135,33 @@ def parse_input_boolean_field(object_id, type_id, iop_file):
         a = struct.unpack('<BB', iop_file.read(2))
         macros.append(MacroObject(a[0], a[1]))
 
-    print("\n\tObject ID: " + str(object_id) +
-          "\n\tType: " + str(type_id) +
-          "\n\tbackground_color: " + str(background_color) +
-          "\n\tWidth: " + str(width) +
-          "\n\tforeground_color: " + str(foreground_color) +
-          "\n\tvariable_reference: " + str(variable_reference) +
-          "\n\tvalue: " + str(value) +
-          "\n\tenabled: " + str(enabled) +
-          "\n\tMacros: " + str(number_macros))
-
-    for macro in macros:
-        print(macro)
-
 
 def parse_input_string_field(object_id, type_id, iop_file):
-    pass
+    input_string = struct.unpack('<HHBHHBHBB', iop_file.read(14))
+    width = input_string[0]
+    height = input_string[1]
+    background_color = input_string[2]
+    font_attr = input_string[3]
+    input_attr = input_string[4]
+    options = input_string[5]
+    variable_ref = input_string[6]
+    justification = input_string[7]
+    length = input_string[8]
+    characters = []
+    value = ''
+
+    for _ in range(length):
+        character = struct.unpack('<c', iop_file.read(1))
+        characters.append(character[0])
+
+    input_string = struct.unpack('<BB', iop_file.read(2))
+    enabled = input_string[0]
+    number_macros = input_string[1]
+    macros = []
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
 
 
 def parse_input_number_field(object_id, type_id, iop_file):
