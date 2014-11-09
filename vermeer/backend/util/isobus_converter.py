@@ -182,7 +182,32 @@ def parse_button(object_id, type_id, iop_file):
 
 
 def parse_input_boolean_field(object_id, type_id, iop_file):
-    pass
+    boolean_input = struct.unpack('<BHHHBBB', iop_file.read(10))
+    background_color = boolean_input[0]
+    width = boolean_input[1]
+    foreground_color = boolean_input[2]
+    variable_reference = boolean_input[3]
+    value = boolean_input[4]
+    enabled = boolean_input[5]
+    number_macros = boolean_input[6]
+    macros = []
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
+
+    print("\n\tObject ID: " + str(object_id) +
+          "\n\tType: " + str(type_id) +
+          "\n\tbackground_color: " + str(background_color) +
+          "\n\tWidth: " + str(width) +
+          "\n\tforeground_color: " + str(foreground_color) +
+          "\n\tvariable_reference: " + str(variable_reference) +
+          "\n\tvalue: " + str(value) +
+          "\n\tenabled: " + str(enabled) +
+          "\n\tMacros: " + str(number_macros))
+
+    for macro in macros:
+        print(macro)
 
 
 def parse_input_string_field(object_id, type_id, iop_file):
