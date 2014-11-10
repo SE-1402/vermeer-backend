@@ -20,6 +20,48 @@ class MacroObject:
         return "Macro {}, Event ID {}".format(self.macro_id, self.event_id)
 
 
+class LanguageObject:
+    def __init__(self, language_code):
+        self.language_code = language_code
+
+    def __str__(self):
+        return "Language {}".format(self.language_code)
+
+
+class PointObject:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        return "Point: X @ {}, Y @ {}".format(self.x, self.y)
+
+
+def parse_working_set(object_id, type_id, iop_file):
+    parsed_object = struct.unpack('<B?HBBB', iop_file.read(7))
+    background_color = parsed_object[0]
+    selectable = parsed_object[1]
+    active_mask = parsed_object[2]
+    number_objects = parsed_object[3]
+    number_macros = parsed_object[4]
+    number_languages = parsed_object[5]
+    objects = []
+    macros = []
+    languages = []
+
+    for _ in range(number_objects):
+        a = struct.unpack('<Hhh', iop_file.read(6))
+        objects.append(ObjectLocation(a[0], a[1], a[2]))
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
+
+    for _ in range(number_languages):
+        a = struct.unpack('<cc', iop_file.read(2))
+        languages.append(LanguageObject(a[0] + a[1]))
+
+
 def parse_data_mask(object_id, type_id, iop_file):
     data_mask = struct.unpack('<BHBB', iop_file.read(5))
     background_color = data_mask[0]
@@ -248,15 +290,68 @@ def parse_ellipse(object_id, type_id, iop_file):
 
 
 def parse_polygon(object_id, type_id, iop_file):
-    pass
+    parsed_object = struct.unpack('<HHHHBBB', iop_file.read(11))
+    width = parsed_object[0]
+    height = parsed_object[1]
+    line_attr = parsed_object[2]
+    fill_attr = parsed_object[3]
+    polygon_type = parsed_object[4]
+    number_of_points = parsed_object[5]
+    number_macros = parsed_object[6]
+    macros = []
+    points = []
+
+    for _ in range(number_of_points):
+        a = struct.unpack('<HH', iop_file.read(4))
+        points.append(PointObject(a[0], a[1]))
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
 
 
 def parse_meter(object_id, type_id, iop_file):
-    pass
+    parsed_object = struct.unpack('<HBBBBBBBHHHHB', iop_file.read(18))
+    width = parsed_object[0]
+    needle_color = parsed_object[1]
+    border_color = parsed_object[2]
+    arc_and_tick_color = parsed_object[3]
+    options = parsed_object[4]
+    number_ticks = parsed_object[5]
+    start_angle = parsed_object[6]
+    end_angle = parsed_object[7]
+    min_value = parsed_object[8]
+    max_value = parsed_object[9]
+    variable_ref = parsed_object[10]
+    value = parsed_object[11]
+    number_macros = parsed_object[12]
+    macros = []
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
 
 
 def parse_linear_bar_graph(object_id, type_id, iop_file):
-    pass
+    parsed_object = struct.unpack('<HHBBBBHHHHHHB', iop_file.read(21))
+    width = parsed_object[0]
+    height = parsed_object[1]
+    color = parsed_object[2]
+    target_line_color = parsed_object[3]
+    options = parsed_object[4]
+    number_ticks = parsed_object[5]
+    min_value = parsed_object[6]
+    max_value = parsed_object[7]
+    variable_ref = parsed_object[8]
+    value = parsed_object[9]
+    target_value_variable_ref = parsed_object[10]
+    target_value = parsed_object[11]
+    number_macros = parsed_object[12]
+    macros = []
+
+    for _ in range(number_macros):
+        a = struct.unpack('<BB', iop_file.read(2))
+        macros.append(MacroObject(a[0], a[1]))
 
 
 def parse_arched_bar_graph(object_id, type_id, iop_file):
@@ -343,6 +438,7 @@ class IopParser:
     @staticmethod
     def parse_object(object_id, object_type, iop_file):
         return {
+            0: parse_working_set,
             1: parse_data_mask,
             2: parse_alarm_mask,
             3: parse_container,
