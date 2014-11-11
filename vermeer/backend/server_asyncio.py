@@ -197,10 +197,13 @@ if __name__ == '__main__':
     coro = loop.create_server(factory, '0.0.0.0', 9000)
     server = loop.run_until_complete(coro)
 
+    print("Server Starting...")
     try:
         loop.run_forever()
     except KeyboardInterrupt:
+        print("Server Error...")
         pass
     finally:
+        print("Server Stopped...")
         server.close()
         loop.close()

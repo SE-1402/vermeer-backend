@@ -355,7 +355,8 @@ def parse_linear_bar_graph(object_id, type_id, iop_file):
 
 
 def parse_arched_bar_graph(object_id, type_id, iop_file):
-    pass
+    parsed_object = struct.unpack('<HHBBBBHHHHHHB', iop_file.read(21))
+
 
 
 def parse_picture_graphic(object_id, type_id, iop_file):
