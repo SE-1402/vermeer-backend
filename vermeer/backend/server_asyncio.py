@@ -2,11 +2,11 @@
 # #
 # #  Copyright (C) 2013-2014 Tavendo GmbH
 # #
-##  Licensed under the Apache License, Version 2.0 (the "License");
-##  you may not use this file except in compliance with the License.
-##  You may obtain a copy of the License at
-##
-##      http://www.apache.org/licenses/LICENSE-2.0
+# #  Licensed under the Apache License, Version 2.0 (the "License");
+# #  you may not use this file except in compliance with the License.
+# #  You may obtain a copy of the License at
+# #
+# #      http://www.apache.org/licenses/LICENSE-2.0
 ##
 ##  Unless required by applicable law or agreed to in writing, software
 ##  distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,11 +24,13 @@ from autobahn.asyncio.websocket import WebSocketServerProtocol, WebSocketServerF
 class IopParser:
     def __init__(self):
         self.iop_file = None
-        self.data = {"macro": [], "datamask": [], "alarm_mask": [], "container": [], "soft_key_mask": [], "key": [],
-                     "input_boolean": [], "input_string": [], "input_number": [], "button": [], "output_number": [],
-                     "line": [], "rectangle": [], "ellipse": [], "polygon": [], "meter": [], "linear_bar_graph": [],
-                     "arched_bar_graph": [], "picture_graphic": [], "number_variable": [], "string_variable": [],
-                     "font_attr": [], "line_attr": [], "fill_attr": [], "input_attributes": [], "output_string": [], "object_pointer": []}
+        self.data = {"macro": [], "data_mask": [], "alarm_mask": [], "container": [],
+                     "soft_key_mask": [], "key": [], "input_boolean": [], "input_string": [], "input_number": [],
+                     "button": [], "output_number": [], "line": [], "rectangle": [], "ellipse": [], "polygon": [],
+                     "meter": [], "linear_bar_graph": [], "arched_bar_graph": [], "picture_graphic": [],
+                     "number_variable": [], "string_variable": [], "font_attr": [], "line_attr": [], "fill_attr": [],
+                     "input_attributes": [], "output_string": [],
+                     "object_pointer": []}
 
     def parse(self, iop_file_name=None):
         if not iop_file_name:
@@ -147,7 +149,7 @@ class IopParser:
 
         workingset = {"id": object_id, "background_colour": background_color, "selectable": selectable,
                       "active_mask": active_mask, "language": languages, "include_objects": objects}
-        self.data["workingset"] = workingset
+        self.data["working_set"] = workingset
 
     def parse_data_mask(self, object_id, type_id, iop_file):
         data_mask = struct.unpack("<BHBB", iop_file.read(5))
@@ -168,7 +170,7 @@ class IopParser:
 
         toadd = {"id": object_id, "background_colour": background_color, "soft_key_mask": soft_key_mask,
                  "include_object": objects}
-        self.data["datamask"].append(toadd)
+        self.data["data_mask"].append(toadd)
 
     def parse_alarm_mask(self, object_id, type_id, iop_file):
         temp = struct.unpack("<BHBBBB", iop_file.read(7))
