@@ -78,7 +78,7 @@ class IopParser:
             34: self.parse_window_mask,
             35: self.parse_key_group,
             36: self.parse_graphics_context,
-            37: self.parse_output_list,
+            37: self.parse_output_list_field,
             38: self.parse_extended_input_attr,
             39: self.parse_color_map,
             40: self.parse_object_label_ref_list
