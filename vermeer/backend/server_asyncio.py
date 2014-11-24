@@ -24,11 +24,11 @@ from autobahn.asyncio.websocket import WebSocketServerProtocol, WebSocketServerF
 class IopParser:
     def __init__(self):
         self.iop_file = None
-        self.data = {"macro": [], "data_mask": [], "alarm_mask": [], "container": [], "soft_key_mask": [], "key": [],
+        self.data = {"include_macro": [], "data_mask": [], "alarm_mask": [], "container": [], "soft_key_mask": [], "key": [],
                      "input_boolean": [], "input_string": [], "input_number": [], "button": [], "output_number": [],
                      "line": [], "rectangle": [], "ellipse": [], "polygon": [], "meter": [], "linear_bar_graph": [],
                      "arched_bar_graph": [], "picture_graphic": [], "number_variable": [], "string_variable": [],
-                     "font_attributes": [], "line_attributes": [], "fill_attributes": [], "input_attributes": [],
+                     "font_attribute": [], "line_attribute": [], "fill_attribute": [], "input_attribute": [],
                      "output_string": [],
                      "object_pointer": []}
 
@@ -123,7 +123,7 @@ class IopParser:
     # OBJECT POOL PARSING
     def parse_working_set(self, object_id, type_id, iop_file):
         parsed_object = struct.unpack("<B?HBBB", iop_file.read(7))
-        background_color = parsed_object[0]
+        background_colour = parsed_object[0]
         selectable = parsed_object[1]
         active_mask = parsed_object[2]
         number_objects = parsed_object[3]
@@ -145,13 +145,13 @@ class IopParser:
             a = struct.unpack("<cc", iop_file.read(2))
             languages.append({"code": a[0] + a[1]})
 
-        workingset = {"id": object_id, "background_colour": background_color, "selectable": selectable,
-                      "active_mask": active_mask, "language": languages, "include_objects": objects}
+        workingset = {"id": object_id, "background_colour": background_colour, "selectable": selectable,
+                      "active_mask": active_mask, "language": languages, "include_object": objects}
         self.data["working_set"] = workingset
 
     def parse_data_mask(self, object_id, type_id, iop_file):
         data_mask = struct.unpack("<BHBB", iop_file.read(5))
-        background_color = data_mask[0]
+        background_colour = data_mask[0]
         soft_key_mask = data_mask[1]
         number_objects = data_mask[2]
         number_macros = data_mask[3]
@@ -166,13 +166,13 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "background_colour": background_color, "soft_key_mask": soft_key_mask,
+        toadd = {"id": object_id, "background_colour": background_colour, "soft_key_mask": soft_key_mask,
                  "include_object": objects}
         self.data["data_mask"].append(toadd)
 
     def parse_alarm_mask(self, object_id, type_id, iop_file):
         temp = struct.unpack("<BHBBBB", iop_file.read(7))
-        background_color = temp[0]
+        background_colour = temp[0]
         soft_key_mask = temp[1]
         priority = temp[2]
         acoustic_signal = temp[3]
@@ -189,7 +189,7 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "background_colour": background_color, "soft_key_mask": soft_key_mask,
+        toadd = {"id": object_id, "background_colour": background_colour, "soft_key_mask": soft_key_mask,
                  "priority": priority, "acoustic_signal": acoustic_signal, "include_object": objects}
         self.data["alarm_mask"].append(toadd)
 
@@ -216,7 +216,7 @@ class IopParser:
 
     def parse_soft_key_mask(self, object_id, type_id, iop_file):
         parsed_object = struct.unpack("<BBB", iop_file.read(3))
-        background_color = parsed_object[0]
+        background_colour = parsed_object[0]
         number_objects = parsed_object[1]
         number_macros = parsed_object[2]
         objects = []
@@ -224,18 +224,18 @@ class IopParser:
 
         for _ in range(number_objects):
             a = struct.unpack("<H", iop_file.read(2))
-            objects.append(a[0])
+            objects.append({"id": a[0]}) #, "pos_x": 0, "pos_y": 0})
 
         for _ in range(number_macros):
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "background_color": background_color, "include_object": objects}
+        toadd = {"id": object_id, "background_colour": background_colour, "include_object": objects}
         self.data["soft_key_mask"].append(toadd)
 
     def parse_key(self, object_id, type_id, iop_file):
         parsed_object = struct.unpack("<BBBB", iop_file.read(4))
-        background_color = parsed_object[0]
+        background_colour = parsed_object[0]
         key_code = parsed_object[1]
         number_objects = parsed_object[2]
         number_macros = parsed_object[3]
@@ -250,14 +250,14 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "background_color": background_color, "key_code": key_code, "include_object": objects}
+        toadd = {"id": object_id, "background_colour": background_colour, "key_code": key_code, "include_object": objects}
         self.data["key"].append(toadd)
 
     def parse_button(self, object_id, type_id, iop_file):
         parsed_object = struct.unpack("<HHBBBBBB", iop_file.read(10))
         width = parsed_object[0]
         height = parsed_object[1]
-        background_color = parsed_object[2]
+        background_colour = parsed_object[2]
         border_color = parsed_object[3]
         key_code = parsed_object[4]
         options = parsed_object[5]
@@ -274,13 +274,13 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "width": width, "height": height, "background_color": background_color,
+        toadd = {"id": object_id, "width": width, "height": height, "background_colour": background_colour,
                  "border_color": border_color, "key_code": key_code, "options": options, "include_object": objects}
         self.data["button"].append(toadd)
 
     def parse_input_boolean_field(self, object_id, type_id, iop_file):
         parsed_object = struct.unpack("<BHHHBBB", iop_file.read(10))
-        background_color = parsed_object[0]
+        background_colour = parsed_object[0]
         width = parsed_object[1]
         foreground_color = parsed_object[2]
         variable_reference = parsed_object[3]
@@ -293,7 +293,7 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "background_color": background_color, "width": width,
+        toadd = {"id": object_id, "background_colour": background_colour, "width": width,
                  "foreground_color": foreground_color,
                  "variable_reference": variable_reference, "value": value, "enabled": enabled}
         self.data["input_boolean"].append(toadd)
@@ -302,7 +302,7 @@ class IopParser:
         parsed_object = struct.unpack("<HHBHHBHBB", iop_file.read(14))
         width = parsed_object[0]
         height = parsed_object[1]
-        background_color = parsed_object[2]
+        background_colour = parsed_object[2]
         font_attr = parsed_object[3]
         input_attr = parsed_object[4]
         options = parsed_object[5]
@@ -324,8 +324,8 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "width": width, "height": height, "background_color": background_color,
-                 "font_attributes": font_attr, "input_attributes": input_attr, "options": options,
+        toadd = {"id": object_id, "width": width, "height": height, "background_colour": background_colour,
+                 "font_attribute": font_attr, "input_attribute": input_attr, "options": options,
                  "variable_reference": variable_ref, "justification": justification, "length": length,
                  "value": "".join(value), "enabled": enabled}
         self.data["input_string"].append(toadd)
@@ -334,7 +334,7 @@ class IopParser:
         parsed_object = struct.unpack("<HHBHBHLLLlfBBBBB", iop_file.read(35))
         width = parsed_object[0]
         height = parsed_object[1]
-        background_color = parsed_object[2]
+        background_colour = parsed_object[2]
         font_attr = parsed_object[3]
         options = parsed_object[4]
         variable_ref = parsed_object[5]
@@ -354,8 +354,8 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "width": width, "height": height, "background_color": background_color,
-                 "font_attributes": font_attr, "options": options, "variable_reference": variable_ref, "value": value,
+        toadd = {"id": object_id, "width": width, "height": height, "background_colour": background_colour,
+                 "font_attribute": font_attr, "options": options, "variable_reference": variable_ref, "value": value,
                  "min_value": min_value, "max_value": max_value, "offset": offset, "scale": scale,
                  "number_of_decimals": num_decimals,
                  "format": format, "justification": justification, "options_2": options_2}
@@ -384,7 +384,7 @@ class IopParser:
         parsed_object = struct.unpack("<HHBHBHBH", iop_file.read(13))
         width = parsed_object[0]
         height = parsed_object[1]
-        background_color = parsed_object[2]
+        background_colour = parsed_object[2]
         font_attr = parsed_object[3]
         options = parsed_object[4]
         variable_ref = parsed_object[5]
@@ -404,8 +404,8 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "width": width, "height": height, "background_color": background_color,
-                 "font_attributes": font_attr, "options": options, "variable_ref": variable_ref,
+        toadd = {"id": object_id, "width": width, "height": height, "background_colour": background_colour,
+                 "font_attribute": font_attr, "options": options, "variable_ref": variable_ref,
                  "justification": justification,
                  "length": length, "value": "".join(value)}
         self.data["output_string"].append(toadd)
@@ -414,7 +414,7 @@ class IopParser:
         parsed_object = struct.unpack("<HHBHBHLlfBBB", iop_file.read(25))
         width = parsed_object[0]
         height = parsed_object[1]
-        background_color = parsed_object[2]
+        background_colour = parsed_object[2]
         font_attr = parsed_object[3]
         options = parsed_object[4]
         variable_ref = parsed_object[5]
@@ -431,8 +431,8 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "width": width, "height": height, "background_color": background_color,
-                 "font_attributes": font_attr, "options": options, "variable_ref": variable_ref, "value": value,
+        toadd = {"id": object_id, "width": width, "height": height, "background_colour": background_colour,
+                 "font_attribute": font_attr, "options": options, "variable_ref": variable_ref, "value": value,
                  "offset": offset, "scale": scale, "num_decimals": num_decimals, "format": format,
                  "justification": justification}
         self.data["output_number"].append(toadd)
@@ -454,7 +454,7 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "line_attributes": line_attr, "width": width, "height": height,
+        toadd = {"id": object_id, "line_attribute": line_attr, "width": width, "height": height,
                  "line_direction": line_direction}
         self.data["line"].append(toadd)
 
@@ -472,8 +472,8 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "line_attributes": line_attr, "width": width, "height": height,
-                 "line_suppression": line_suppression, "fill_attributes": fill_attr}
+        toadd = {"id": object_id, "line_attribute": line_attr, "width": width, "height": height,
+                 "line_suppression": line_suppression, "fill_attribute": fill_attr}
         self.data["rectangle"].append(toadd)
 
     def parse_ellipse(self, object_id, type_id, iop_file):
@@ -492,9 +492,9 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "line_attributes": line_attr, "width": width, "height": height,
+        toadd = {"id": object_id, "line_attribute": line_attr, "width": width, "height": height,
                  "ellipse_type": ellipse_type, "start_angle": start_angle, "end_angle": end_angle,
-                 "fill_attributes": fill_attr}
+                 "fill_attribute": fill_attr}
         self.data["ellipse"].append(toadd)
 
     def parse_polygon(self, object_id, type_id, iop_file):
@@ -517,8 +517,8 @@ class IopParser:
             a = struct.unpack("<BB", iop_file.read(2))
             macros.append({"event_id": a[0], "macro_id": a[1]})
 
-        toadd = {"id": object_id, "width": width, "height": height, "line_attributes": line_attr,
-                 "fill_attributes": fill_attr, "polygon_type": polygon_type, "number_of_points": number_of_points,
+        toadd = {"id": object_id, "width": width, "height": height, "line_attribute": line_attr,
+                 "fill_attribute": fill_attr, "polygon_type": polygon_type, "number_of_points": number_of_points,
                  "number_macros": number_macros, "points": points}
         self.data["polygon"].append(toadd)
 
@@ -632,7 +632,7 @@ class IopParser:
         toadd = {"id": object_id, "width": width, "actual_width": actual_width, "actual_height": actual_height,
                  "format": format, "options": options, "transparency_colour": transparency_colour,
                  "number_bytes_raw_data": number_bytes_raw_data, "number_macros": number_macros, "raw_data": raw_data}
-        self.data["picture_graphic"].append(toadd)
+        #self.data["picture_graphic"].append(toadd)
 
     def parse_number_variable(self, object_id, type_id, iop_file):
         parsed_object = struct.unpack("<L", iop_file.read(4))
@@ -668,7 +668,7 @@ class IopParser:
 
         toadd = {"id": object_id, "font_colour": font_colour, "font_size": font_size, "font_type": font_type,
                  "font_style": font_style, "number_macros": number_macros}
-        self.data["font_attributes"].append(toadd)
+        self.data["font_attribute"].append(toadd)
 
     def parse_line_attr_object(self, object_id, type_id, iop_file):
         parsed_object = struct.unpack("<BBHB", iop_file.read(5))
@@ -684,7 +684,7 @@ class IopParser:
 
         toadd = {"id": object_id, "line_color": line_color, "line_width": line_width, "line_art": line_art,
                  "number_macros": number_macros}
-        self.data["line_attributes"].append(toadd)
+        self.data["line_attribute"].append(toadd)
 
     def parse_fill_attr_object(self, object_id, type_id, iop_file):
         parsed_object = struct.unpack("<BBHB", iop_file.read(5))
@@ -700,7 +700,7 @@ class IopParser:
 
         toadd = {"id": object_id, "fill_type": fill_type, "fill_colour": fill_colour, "fill_pattern": fill_pattern,
                  "number_macros": number_macros}
-        self.data["fill_attributes"].append(toadd)
+        self.data["fill_attribute"].append(toadd)
 
     def parse_input_attr_object(self, object_id, type_id, iop_file):
         parsed_object = struct.unpack("<BB", iop_file.read(2))
@@ -723,7 +723,7 @@ class IopParser:
         toadd = {"id": object_id, "validation_type": validation_type, "length": length,
                  "validation_string": "".join(validation_string),
                  "number_macros": number_macros}
-        self.data["input_attributes"].append(toadd)
+        self.data["input_attribute"].append(toadd)
 
     def parse_object_ptr(self, object_id, type_id, iop_file):
         parsed_object = struct.unpack("<H", iop_file.read(2))
