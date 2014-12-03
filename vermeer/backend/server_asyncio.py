@@ -920,16 +920,13 @@ def read_uart(timeout):
     while True:
         try:
             val = ser.read(5)
-            print(1)
             i += 1
-
             if val != "":
                 ser.close
                 return val
             elif i > timeout:
                 ser.close
                 return ""
-
             time.sleep(1 / 1000.00)
         except Exception:
             if i == 0:
@@ -962,11 +959,12 @@ if __name__ == '__main__':
     coro = loop.create_server(factory, '0.0.0.0', 9000)
     server = loop.run_until_complete(coro)
 
-    print("Server Starting...")
+    print("Waiting for 'START' Signal...")
     try:
         while not read_uart_for_value("Start", 3000):
-            print("START signal not received, still waiting")
-        print("Start signal received.")
+            print("'START' signal not received, still waiting")
+        print("'START' signal received.")
+        print("\nStarting WebSocket Server.\n")
         loop.run_forever()
     except KeyboardInterrupt:
         print("Server Error...")
