@@ -21,6 +21,7 @@ import struct
 
 from autobahn.asyncio.websocket import WebSocketServerProtocol, WebSocketServerFactory
 import time
+import serial
 
 
 class IopParser:
@@ -953,7 +954,7 @@ if __name__ == '__main__':
 
     print("Server Starting...")
     try:
-        while not readUARTforValue("Start", 3000):
+        while not read_uart_for_value("Start", 3000):
             print("START signal not recieved, still waiting")
         loop.run_forever()
     except KeyboardInterrupt:
