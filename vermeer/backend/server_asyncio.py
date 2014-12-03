@@ -20,6 +20,7 @@ import json
 import struct
 
 from autobahn.asyncio.websocket import WebSocketServerProtocol, WebSocketServerFactory
+import time
 
 
 class IopParser:
@@ -912,6 +913,29 @@ class MyServerProtocol(WebSocketServerProtocol):
         print("WebSocket connection closed: {0}".format(reason))
 
 
+def read_uart(timeout):
+    ser = serial.Serial(0)
+    i = 0
+    while(1):
+        val = ser.read(5);
+        print(1)
+        i = i + 1
+
+        if val != "":
+            ser.close
+            return val
+        elif i > timeout:
+            ser.close
+            return ""
+
+        time.sleep(1/1000.00)
+
+
+def read_uart_for_value(message_value, uart_timeout):
+    if read_uart(uart_timeout) == message_value:
+        return True
+    return False
+
 if __name__ == '__main__':
 
     try:
@@ -929,6 +953,8 @@ if __name__ == '__main__':
 
     print("Server Starting...")
     try:
+        while not readUARTforValue("Start", 3000):
+            print("START signal not recieved, still waiting")
         loop.run_forever()
     except KeyboardInterrupt:
         print("Server Error...")
