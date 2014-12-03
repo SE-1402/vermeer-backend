@@ -37,8 +37,8 @@
       <file leaf-file-name="server_asyncio.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71291864" vertical-offset="13623" max-vertical-offset="14640">
-              <caret line="938" column="47" selection-start-line="938" selection-start-column="34" selection-end-line="938" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.5933014" vertical-offset="13638" max-vertical-offset="14655">
+              <caret line="934" column="22" selection-start-line="934" selection-start-column="22" selection-end-line="934" selection-end-column="22" />
               <folding>
                 <element signature="e#785#796#0" expanded="true" />
               </folding>
@@ -844,8 +844,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vermeer/backend/server_asyncio.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71291864" vertical-offset="13623" max-vertical-offset="14640">
-          <caret line="938" column="47" selection-start-line="938" selection-start-column="34" selection-end-line="938" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.5933014" vertical-offset="13638" max-vertical-offset="14655">
+          <caret line="934" column="22" selection-start-line="934" selection-start-column="22" selection-end-line="934" selection-end-column="22" />
           <folding>
             <element signature="e#785#796#0" expanded="true" />
           </folding>

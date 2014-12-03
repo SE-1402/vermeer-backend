@@ -931,8 +931,9 @@ def read_uart(timeout):
                 return ""
 
             time.sleep(1/1000.00)
-        except Exception, e:
-            print e
+        except Exception:
+            if i == 0:
+                print "Port Not Connected"
 
 
 def read_uart_for_value(message_value, uart_timeout):
