@@ -19,3 +19,22 @@ To debug:
 
 Credit goes to Autobahn|Python for the server implementation:
 (https://github.com/tavendo/AutobahnPython)
+
+From the WRT Node:
+===============
+
+1) ssh root@i.wrtno.de
+
+2) ./mountUSB.sh
+
+3) cd /mnt/shares
+
+4) ./update.sh
+
+5) source vermeer/bin/activate
+
+6) pip install -r vermeer-backend-master/requirements
+
+7) cd vermeer-backend-master
+
+8) python vermeer/backend/server_asyncio.py
