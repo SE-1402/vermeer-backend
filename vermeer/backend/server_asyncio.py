@@ -930,16 +930,22 @@ def read_uart(timeout):
                 ser.close
                 return ""
 
-            time.sleep(1/1000.00)
+            time.sleep(1 / 1000.00)
         except Exception:
             if i == 0:
                 print "Port Not Connected"
+            elif i > timeout:
+                ser.close
+                return ""
+            i += 1
+            time.sleep(1 / 1000.00)
 
 
 def read_uart_for_value(message_value, uart_timeout):
     if read_uart(uart_timeout) == message_value:
         return True
     return False
+
 
 if __name__ == '__main__':
 
