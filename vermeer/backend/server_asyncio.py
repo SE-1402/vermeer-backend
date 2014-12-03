@@ -917,19 +917,22 @@ class MyServerProtocol(WebSocketServerProtocol):
 def read_uart(timeout):
     ser = serial.Serial(0)
     i = 0
-    while(1):
-        val = ser.read(5);
-        print(1)
-        i = i + 1
+    while True:
+        try:
+            val = ser.read(5)
+            print(1)
+            i += 1
 
-        if val != "":
-            ser.close
-            return val
-        elif i > timeout:
-            ser.close
-            return ""
+            if val != "":
+                ser.close
+                return val
+            elif i > timeout:
+                ser.close
+                return ""
 
-        time.sleep(1/1000.00)
+            time.sleep(1/1000.00)
+        except Exception, e:
+            print e
 
 
 def read_uart_for_value(message_value, uart_timeout):
