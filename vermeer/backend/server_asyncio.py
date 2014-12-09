@@ -915,7 +915,7 @@ class MyServerProtocol(WebSocketServerProtocol):
 
 
 def read_uart(timeout):
-    ser = serial.Serial(0)
+    ser = serial.Serial(0, 57600)
     i = 0
     while True:
         try:
