@@ -961,10 +961,10 @@ if __name__ == '__main__':
 
     print("Waiting for 'START' Signal...")
     try:
-        while not read_uart_for_value("Start", 3000):
-            print("'START' signal not received, still waiting")
-        print("'START' signal received.")
-        print("\nStarting WebSocket Server.\n")
+        # while not read_uart_for_value("Start", 3000):
+        #     print("'START' signal not received, still waiting")
+        # print("'START' signal received.")
+        # print("\nStarting WebSocket Server.\n")
         loop.run_forever()
     except KeyboardInterrupt:
         print("Server Error...")
